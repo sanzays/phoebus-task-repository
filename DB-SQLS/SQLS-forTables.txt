@@ -1,0 +1,22 @@
+CREATE TABLE 'customer' (
+  'customer_id' varchar(45) NOT NULL,
+  'forename' varchar(45) NOT NULL,
+  'surname' varchar(45) NOT NULL,
+  'dateofbirth' date NOT NULL,
+  PRIMARY KEY ('customer_id')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE 'customer_account' (
+  'customer_id' varchar(45) NOT NULL,
+  'account_id' varchar(45) NOT NULL,
+  PRIMARY KEY ('customer_id'),
+  KEY 'fk_account_id_idx' ('account_id'),
+  CONSTRAINT 'fk_account_id' FOREIGN KEY ('account_id') REFERENCES 'account' ('account_id'),
+  CONSTRAINT 'fk_customer_id' FOREIGN KEY ('customer_id') REFERENCES 'customer' ('customer_id')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE 'account' (
+  'account_id' varchar(45) NOT NULL,
+  'account_number' int(11) NOT NULL,
+  PRIMARY KEY ('account_id')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
